@@ -1,0 +1,82 @@
+.answer {
+    min-height: 100vh;
+    background-image: url(../../Assets/backgroundImage.png);
+    background-position: center;
+    background-size: cover;
+}
+.answerContainer {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* theAnswer==============================================> */
+
+.theAnswer {
+    width: 50%;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 40px 20px;
+    border: 2px solid #559dbb;
+}
+
+
+.theAnswer h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.theAnswer .answerMenu ul, .theAnswer .answerMenu p {
+    font-size: 17px;
+}
+
+/* answerImage============================================> */
+.answerImage {
+    width: 50%;
+
+}
+
+/* responsiveDesign=======================================> */
+@media(max-width:1200px) {
+    .answerContainer {
+        flex-direction: column;
+        margin-top: 60px;
+    }
+
+    .answerImage, .theAnswer {
+        width: 90%;
+    }
+
+    .answerImage img {
+        width: 90% !important;
+    }
+
+}
+
+@media(max-width:800px) {
+
+    .answerImage, .theAnswer {
+        width: 100%;
+    }
+
+    .answerImage img {
+        width: 90% !important;
+    }
+    
+}
+
+@media(max-width:800px) {
+    
+    .answerContainer {
+        width: 95%;
+      
+        
+    }
+    .answerImage img {
+        width: 100% !important;
+    }
+
+
+}

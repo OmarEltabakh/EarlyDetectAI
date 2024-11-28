@@ -1,0 +1,136 @@
+.home {
+    min-height: 100vh;
+    background-image: url(../../Assets/backgroundImage.png);
+    background-position: center;
+    background-size: cover;
+}
+
+
+.homeContainer {
+    width: 80%;
+    margin: auto;
+}
+
+.homeContainer>div {
+    display: flex;
+}
+
+
+/* formContainer===================================================> */
+.formContainer {
+    width: 50%;
+}
+
+
+.formContainer form {
+    width: 90%;
+}
+
+
+
+.homeContainer form input {
+    padding: 9px 5px;
+    border: #798ce4 solid 3px;
+}
+
+
+.homeContainer form input::placeholder {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #595c5f;
+}
+
+form select {
+    font-size: 1.25rem !important;
+    font-weight: 500 !important;
+    color: #595c5f !important;
+    border: #798ce4 solid 3px !important;
+}
+
+.homeContainer form button {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: black;
+    padding: 6px 1.875rem;
+    border-radius: .5rem;
+    border: #798ce4 solid 3px;
+    background-color: white;
+    transition: .3s ease-in-out transform;
+    cursor: pointer;
+}
+
+.homeContainer form button:hover {
+    transform: translateY(-5%);
+}
+
+/* homeImageContainer=============================================> */
+.homeImageContainer {
+    width: 50%;
+}
+
+.homeImageContainer img {
+    width: 90%;
+}
+
+
+/* responsiveDesign================================================> */
+@media(max-width:1200px) {
+    .homeContainer {
+        margin-top: 60px;
+        width: 90%;
+    }
+
+    .homeContainer>div {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .homeImageContainer, .formContainer {
+        width: 90%;
+    }
+
+    .formContainer {
+        display: flex;
+        justify-content: center;
+    }
+
+    .homeImageContainer {
+        margin-top: 60px;
+    }
+
+    .homeImageContainer img {
+        width: 70%;
+    }
+}
+
+@media(max-width:800px) {
+
+    .homeContainer {
+        width: 95%;
+    }
+
+    .homeImageContainer, .formContainer {
+        width: 100%;
+    }
+
+    .homeImageContainer img {
+        width: 80%;
+    }
+
+}
+
+@media(max-width:500px) {
+
+    .homeContainer {
+        width: 99%;
+    }
+
+    .formContainer form {
+        width: 100%;
+    }
+
+    .homeImageContainer img {
+        width: 90%;
+    }
+}
+
