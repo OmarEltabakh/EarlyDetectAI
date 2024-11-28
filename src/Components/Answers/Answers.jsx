@@ -17,7 +17,6 @@ export default function Answers() {
     const gender = state?.formData.الجنس || "غير محدد";
     const guidelines = diseaseGuidelines[diseaseType] || diseaseGuidelines.general;
 
-    // دالة لتصدير البيانات إلى Excel
     const exportToExcel = () => {
         const data = [
             ["اسم المريض", "العنوان", "نوع المرض", "النسبة المئوية للخطر", "نصائح"],
@@ -30,10 +29,10 @@ export default function Answers() {
             ]
         ];
 
-        const ws = XLSX.utils.aoa_to_sheet(data); // تحويل البيانات إلى ورقة
-        const wb = XLSX.utils.book_new(); // إنشاء ملف Excel جديد
-        XLSX.utils.book_append_sheet(wb, ws, "حالة المريض"); // إضافة الورقة إلى الملف
-        XLSX.writeFile(wb, "حالة_المريض.xlsx"); // تحميل الملف
+        const ws = XLSX.utils.aoa_to_sheet(data);
+        const wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, "حالة المريض");
+        XLSX.writeFile(wb, "حالة_المريض.xlsx");
     };
 
     return (
@@ -48,34 +47,20 @@ export default function Answers() {
                     viewport={{ once: true }}
                     transition={{ duration: 1, ease: "easeInOut", delay: .3 }}
                     dir='rtl' className={`${style.theAnswer} shadow-lg`}>
-                    {riskPercentage >= 20 ? (
-                        <>
-                            <h2>
-                                {`${gender === "male" ? "عزيزي" : "عزيزتي"}`} {userName}، احتمالية إصابتك بمرض {diseaseType === "diabetes" ? "السكري" : diseaseType === "bloodPressure" ? "الضغط" : diseaseType === "cardiovascular" ? "القلب" : diseaseType === "joint" ? "كسور في العظام" : diseaseType === "immunology" ? " مناعي " : "غير محدد"} هي {`${riskPercentage}%`}. برجاء التوجه إلى أقرب وحدة صحية التابعة لـ {address} لفحص حالتك.
-                            </h2>
-                            <button onClick={exportToExcel} className="btn btn-primary  mt-2">
-                                عرض النتيجة
-                            </button>
-                        </>
+                    <div className={`${style.answerMenu} `}>
+                        <h2>{`${gender === "male" ? "عزيزي" : "عزيزتي"}`} {userName}، احتمالية إصابتك {`${diseaseType === "joint" ? "بـ" : "بمرض"}`} {diseaseType === "diabetes" ? "السكري" : diseaseType === "bloodPressure" ? "الضغط" : diseaseType === "cardiovascular" ? "القلب" : diseaseType === "joint" ? "كسور في العظام" : diseaseType === "immunology" ? " مناعي " : "غير محدد"}{riskPercentage < 30 ? " منخفضة" : riskPercentage < 50 ? " متوسطة" : " مرتفعة"} ({`${riskPercentage}%`})
+                            .</h2>
+                        <p>يرجى اتباع النصائح التالية للحفاظ على صحتك:</p>
+                        <ul className='pe-4'>
+                            {guidelines.map((guideline, index) => (
+                                <li key={index}>{guideline}</li>
+                            ))}
+                        </ul>
+                    </div>
 
-                    ) : (
-                        <>
-                            <div className={`${style.answerMenu} `}>
-                                <h2>{`${gender === "male" ? "عزيزي" : "عزيزتي"}`} {userName}، احتمالية إصابتك {`${diseaseType === "joint" ? "بـ" : "بمرض"}`} {diseaseType === "diabetes" ? "السكري" : diseaseType === "bloodPressure" ? "الضغط" : diseaseType === "cardiovascular" ? "القلب" : diseaseType === "joint" ? "كسور في العظام" : diseaseType === "immunology" ? " مناعي " : "غير محدد"} منخفضة ({`${riskPercentage}%`}).</h2>
-                                <p>يرجى اتباع النصائح التالية للحفاظ على صحتك:</p>
-                                <ul className='pe-4'>
-                                    {guidelines.map((guideline, index) => (
-                                        <li key={index}>{guideline}</li>
-                                    ))}
-                                </ul>
-                            </div>
-
-                            <button onClick={exportToExcel} className="btn btn-primary">
-                                عرض النتيجة
-                            </button>
-
-                        </>
-                    )}
+                    <button onClick={exportToExcel} className="btn btn-primary">
+                        عرض النتيجة
+                    </button>
                 </motion.div>
 
                 {/* theAnswer========================================================> */}
